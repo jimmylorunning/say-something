@@ -1,2 +1,9 @@
-<h1>Say Something</h1>
-<p>I'm giving up on you.</p>
+<p>
+<% if @user %>
+	You're logged in as <%= @user.email %>! <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %>.
+<% else %>
+	You're logged out! <%= link_to "Sign in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %>!
+<% end %>
+</p>
+
+Hello World!

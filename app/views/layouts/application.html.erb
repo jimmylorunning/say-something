@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SaySomething</title>
+  <title>Say Something</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+	<h1>Say Something</h1>
+	<div class="tagline">I'm giving up on you.</div>
+  <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
 
-<%= yield %>
+	<%= yield %>
 
-<br />
-<br />
-This is my second Rails app. Check out the <a href="https://github.com/jimmylorunning/say-something">source</a> and give me some feedback!
+	<br />
+	<br />
+	This is my second Rails app. Check out the <a href="https://github.com/jimmylorunning/say-something">source</a> and give me some feedback!
+	</div>
 </body>
 </html>

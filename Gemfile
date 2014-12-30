@@ -31,14 +31,14 @@ end
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'protected_attributes'    # allows attr_acessible
+#gem 'protected_attributes'    # allows attr_acessible
 gem 'jquery-rails'
 gem 'turbolinks'							# makes following links faster
 gem 'jbuilder', '~> 1.2'			# Build JSON APIs with ease.
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'      # automatically adds the proper vendor prefixes to your CSS code when it is compiled
-
+gem 'devise'									# a flexible authentication solution
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

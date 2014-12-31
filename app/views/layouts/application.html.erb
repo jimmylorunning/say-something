@@ -7,18 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'layouts/header' %>
 <div class="container">
-	<h1>Say Something</h1>
-	<div class="tagline">I'm giving up on you.</div>
-  <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
-
-	<%= yield %>
-
-	<br />
-	<br />
-	This is my second Rails app. Check out the <a href="https://github.com/jimmylorunning/say-something">source</a> and give me some feedback!
+	<div class="page-area">
+    <% flash.each do |key, value| %>
+	    <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <%= yield %>
+		<%= render 'layouts/footer' %>
 	</div>
+</div>
 </body>
 </html>

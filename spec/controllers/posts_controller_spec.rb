@@ -1,11 +1,3 @@
-  	# if not logged in, throw exception
-  	# get params
-  	# create new post instance with: params & current user
-  	# if success: redirect with success flash message
-    # if fail: redirect to ???  with failed flash message
-
-    # also: do i have to worry about strong params? sanitizing title and content?
-
 require 'rails_helper'
 
 def sign_in(user = double('user'))
@@ -67,4 +59,17 @@ RSpec.describe PostsController, :type => :controller do
 	  end
   end
 
+  describe "show action" do
+  	it "should ask the model to find the correct post" do
+  		Posts.should_receive(:find_by_id).with('1')
+  		get :show, {:id => '1'}
+  	end
+
+  	it "should make the post available to the view" do
+  		mypost = double('post')
+  		Posts.stub(:find_by_id).and_return(mypost)
+  		get :show, {:id => '1'}
+  		assigns(:post).should == mypost
+  	end
+  end
 end

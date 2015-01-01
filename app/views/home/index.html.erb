@@ -1,5 +1,9 @@
 <p>Hello World!</p>
 
 <div class="button-area">
-	<%= link_to "New Post", new_post_path, class: "btn btn-default" %>
+	<% if user_signed_in? %>
+	<%= 	link_to "New Post", new_post_path, class: "btn btn-default" %>
+	<% else %>
+	<%= 	link_to "Sign In to Post", new_post_path, class: "btn btn-default" %>
+	<% end %>
 </div>

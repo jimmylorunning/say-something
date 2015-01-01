@@ -19,11 +19,12 @@ class PostsController < ApplicationController
   	# create new post instance with: params & current user
 #    Posts.create!(params[:post].merge!(user_id: current_user))
 #debugger
-    Posts.create!(post_params.merge(user: current_user))
+    @post = Posts.create!(post_params.merge(user: current_user))
 
   	# if success: redirect with success flash message
     # if fail: redirect to ???  with failed flash message
-    redirect_to root_path # for now
+    flash[:notice] = "Post added!"
+    redirect_to post_path(@post)
 
     # also: do i have to worry about strong params? sanitizing title and content?
   end

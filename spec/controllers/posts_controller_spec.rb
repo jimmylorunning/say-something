@@ -23,8 +23,7 @@ RSpec.describe PostsController, :type => :controller do
   describe "create action" do
   	context "not logged in" do
 	    it "should throw exception if not logged in" do
-	    	# set up - stub out user's authenticate method, stub everything
-#	    	Posts.stub(:create!)
+	    	# set up - stub out user's authenticate method
 				sign_in nil
 
 	    	# do stuff - call create action
@@ -35,20 +34,36 @@ RSpec.describe PostsController, :type => :controller do
 
 	  context "logged in" do
 
+	  	before(:each) do
+	  		@user = double('user')
+	  		sign_in @user
+	    	@myparams = {title: 'title', content: 'content'}
+	  	end
+
 	    it "should call model with correct params" do
-	    	# set up - sign in, stub user
-	  		user = double('user')
-	    	sign_in user
-	    	myparams = {title: 'title', content: 'content'}
+	    	# set up - set up new post return value
+	    	new_post = double('post')
 
 	    	# assert - that model was called with correct params and user
-	    	Posts.should_receive(:create!).with(hash_including(:user => user))
+	    	Posts.should_receive(:create!).with(hash_including(:user => @user)).and_return(new_post)
 
 	    	# do stuff - call create action with params
-	    	post :create, {:post => myparams}
-
-
+	    	post :create, {:post => @myparams}
 	    end
+
+	    it "should redirect afterwards" do
+	    	# set up - stub everything
+	    	new_post = double('post')
+	    	Posts.stub(:create!).and_return(new_post)
+
+	    	# do
+	    	post :create, {:post => @myparams}
+
+	    	# assert redirect to root with flash message
+	    	flash.should_not be_nil
+	    	response.should redirect_to post_path(new_post)
+	    end
+
 	  end
   end
 

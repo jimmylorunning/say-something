@@ -1,0 +1,22 @@
+<table class="table table-striped posts-table">
+	<tr>
+		<th class="title">Title</th>
+		<th class="author">Author</th>
+		<th class="date">Date Posted</th>
+	</tr>
+	<% @posts.each do |post| %>
+	<tr>
+		<td><%= link_to post.title, post_path(post) %></td>
+		<td><%= post.user.username if post.user %></td>
+		<td><%= DateTime.parse(post.created_at.to_s).strftime("%B %e, %l:%M %P") %></td>
+	</tr>
+	<% end %>
+</table>
+
+<div class="button-area">
+	<% if user_signed_in? %>
+	<%= 	link_to "New Post", new_post_path, class: "btn btn-default" %>
+	<% else %>
+	<%= 	link_to "Sign In to Post", new_post_path, class: "btn btn-default" %>
+	<% end %>
+</div>

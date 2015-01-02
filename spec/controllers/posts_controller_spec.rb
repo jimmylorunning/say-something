@@ -72,4 +72,18 @@ RSpec.describe PostsController, :type => :controller do
   		assigns(:post).should == mypost
   	end
   end
+
+  describe "index action" do
+  	it "should ask the model for all posts" do
+  		Posts.should_receive(:all)
+  		get :index
+  	end
+
+  	it "should make the posts available to the view" do
+  		allposts = double(['post1', 'post2'])
+  		Posts.stub(:all).and_return(allposts)
+  		get :index
+  		assigns(:posts).should == allposts
+  	end
+  end
 end

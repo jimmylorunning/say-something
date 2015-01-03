@@ -4,3 +4,9 @@
 <div class="post-date"><%= distance_of_time_in_words(@post.created_at, Time.now) %></div>
 <div class="post-content"><%= @post.content %></div>
 </div>
+
+<% if (current_user == @post.user) %>
+	<div class="button-area">
+		<%= button_to 'Delete!', post_path(@post), :method => 'delete', data: {confirm: 'Are you sure?'}, class: 'btn btn-default btn-sm' %>
+	</div>
+<% end %>

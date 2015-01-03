@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Posts.all
+    @posts = Posts.order(created_at: :desc)
   end
 
   def show
@@ -24,6 +24,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def destroy
+    post = Posts.find_by_id(params[:id])
+    post.destroy
+    redirect_to posts_path
   end
 
 end

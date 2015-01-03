@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Posts.find_by_id(params[:id])
+    @replies = Replies.where(post: @post).order(created_at: :asc)
   end
 
   def edit
@@ -22,14 +23,16 @@ class PostsController < ApplicationController
     redirect_to post_path(@post)
   end
 
-  def post_params
-    params.require(:post).permit(:title, :content)
-  end
-
   def destroy
     post = Posts.find_by_id(params[:id])
     post.destroy
     redirect_to posts_path
   end
+
+  private
+
+    def post_params
+      params.require(:post).permit(:title, :content)
+    end
 
 end

@@ -1,12 +1,27 @@
 <div class="post">
 <h1><%= @post.title %></h1>
 <div class="post-user">posted by <%= @post.user.username %></div>
-<div class="post-date"><%= distance_of_time_in_words(@post.created_at, Time.now) %></div>
+<div class="post-date"><%= distance_of_time_in_words(@post.created_at, Time.now) %> ago</div>
 <div class="post-content"><%= @post.content %></div>
 </div>
 
+<div class="button-area">
 <% if (current_user == @post.user) %>
-	<div class="button-area">
-		<%= button_to 'Delete!', post_path(@post), :method => 'delete', data: {confirm: 'Are you sure?'}, class: 'btn btn-default btn-sm' %>
+	<%= button_to 'Delete!', post_path(@post), :method => 'delete',
+		data: {confirm: 'Are you sure?'}, class: 'btn btn-default btn-sm' %>
+<% end %>
+<% if user_signed_in? %>
+	<%= link_to 'New Reply', new_reply_path(post_id: @post.id), class: 'btn btn-default btn-sm' %>
+<% end %>
+</div>
+
+<% if !@replies.empty? %>
+	<h2>Replies:</h2>
+<% end %>
+<% @replies.each do |reply| %>
+	<div class="reply">
+		<div class="reply-content"><%= reply.content %></div>
+		<div class="reply-author">by <%= reply.user.username %></div>
+		<div class="reply-date"><%= distance_of_time_in_words(reply.created_at, Time.now) %> ago</div>
 	</div>
 <% end %>

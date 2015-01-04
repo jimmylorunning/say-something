@@ -1,5 +1,6 @@
 SaySomething::Application.routes.draw do
 
+  get "users/:id/show/" => 'users#show', as: :user
   devise_for :users
   root to: 'home#index'
 

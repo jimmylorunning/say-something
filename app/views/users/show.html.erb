@@ -1,0 +1,8 @@
+<h1><%= @user.username %></h1>
+<p>Favorite movie: <%= @user.favorite_movie %></p>
+<h2>Posts written by <%= @user.username %>:</h2>
+<ul>
+	<% @posts.each do |post| %>
+	<li><%= link_to post.title, post_path(post) %></li>
+	<% end %>
+</ul>

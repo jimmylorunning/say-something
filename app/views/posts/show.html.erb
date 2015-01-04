@@ -2,7 +2,7 @@
 <h1 class="title"><%= @post.title %></h1>
 <div class="post-content"><%= @post.content %></div>
 <div class="post-date"><%= distance_of_time_in_words(@post.created_at, Time.now) %> ago</div>
-<div class="post-author">posted by <%= @post.user.username %>&nbsp;</div>
+<div class="post-author">posted by <%= link_to @post.user.username, user_path(@post.user) %>&nbsp;</div>
 </div>
 
 <div class="button-area">
@@ -18,7 +18,7 @@
 <% @replies.each do |reply| %>
 	<div class="reply">
 		<div class="reply-content"><%= reply.content %></div>
-		<div class="reply-author">by <%= reply.user.username %></div>
+		<div class="reply-author">by <%= link_to reply.user.username, user_path(reply.user) %></div>
 		<div class="reply-date"><%= distance_of_time_in_words(reply.created_at, Time.now) %> ago</div>
 	</div>
 <% end %>

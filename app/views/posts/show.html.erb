@@ -1,8 +1,8 @@
 <div class="post">
-<h1><%= @post.title %></h1>
-<div class="post-user">posted by <%= @post.user.username %></div>
-<div class="post-date"><%= distance_of_time_in_words(@post.created_at, Time.now) %> ago</div>
+<h1 class="title"><%= @post.title %></h1>
 <div class="post-content"><%= @post.content %></div>
+<div class="post-date"><%= distance_of_time_in_words(@post.created_at, Time.now) %> ago</div>
+<div class="post-author">posted by <%= @post.user.username %>&nbsp;</div>
 </div>
 
 <div class="button-area">
@@ -16,7 +16,7 @@
 </div>
 
 <% if !@replies.empty? %>
-	<h2>Replies:</h2>
+	<h2 class="replies">Replies:</h2>
 <% end %>
 <% @replies.each do |reply| %>
 	<div class="reply">

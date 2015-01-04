@@ -4,9 +4,9 @@ SaySomething::Application.routes.draw do
   root to: 'home#index'
 
   get "home/index"
-  resources :posts
-  resources :replies
-
+  resources :posts do
+    resources :replies
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

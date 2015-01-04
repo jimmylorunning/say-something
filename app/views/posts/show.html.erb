@@ -11,7 +11,7 @@
 		data: {confirm: 'Are you sure?'}, class: 'btn btn-default btn-sm' %>
 <% end %>
 <% if user_signed_in? %>
-	<%= link_to 'New Reply', new_reply_path(post_id: @post.id), class: 'btn btn-default btn-sm' %>
+	<%= link_to 'New Reply', new_post_reply_path(@post.id), class: 'btn btn-default btn-sm' %>
 <% end %>
 </div>
 

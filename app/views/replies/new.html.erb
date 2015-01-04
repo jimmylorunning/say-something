@@ -1,18 +1,1 @@
-<h1>Reply to '<%= @post.title %>'</h1>
-<%= form_for :reply, :html => {class: 'form-horizontal post-form'}, :url => post_replies_path do |f| %>
-
-  <div class="form-group">
-    <%= f.label :content, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-9">
-      <%= f.text_area :content, class: 'form-control', :required => true %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-    	<%= f.hidden_field :post_id, value: @post.id %>
-      <%= f.submit "Reply", class: 'btn btn-default' %>
-    </div>
-  </div>
-
-<% end %>
+replies/new.html.erb

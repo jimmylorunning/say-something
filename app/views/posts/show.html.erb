@@ -35,4 +35,6 @@
 	      <%= f.submit "Post Reply", class: 'btn btn-default' %>
 	  </div>
 	<% end %>
+<% else %>
+	<%= 	link_to "Sign In to Reply", new_user_session_path, class: "btn btn-default" %>
 <% end %>
